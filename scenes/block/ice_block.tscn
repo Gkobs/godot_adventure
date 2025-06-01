@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfo6s43cwpisa"]
+
+[ext_resource type="PackedScene" uid="uid://doj6abqfu2e2s" path="res://scenes/block/block.tscn" id="1_1xlek"]
+[ext_resource type="Texture2D" uid="uid://bpc6geus5pca3" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetDungeon.png" id="2_je3e2"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_tl2ls"]
+bounce = 0.05
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qowh1"]
+atlas = ExtResource("2_je3e2")
+region = Rect2(-0.147854, 32.1925, 16.398, 16.8886)
+
+[node name="Block" instance=ExtResource("1_1xlek")]
+physics_material_override = SubResource("PhysicsMaterial_tl2ls")
+linear_damp = 0.2
+
+[node name="Sprite2D" parent="." index="1"]
+texture = SubResource("AtlasTexture_qowh1")

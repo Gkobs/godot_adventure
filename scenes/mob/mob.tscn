@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bym0n1yha8kkx"]
+
+[ext_resource type="Texture2D" uid="uid://dsc0v5mvc3gak" path="res://Ninja Adventure - Asset Pack/Actor/Monsters/SkullBlue/SpriteSheet.png" id="1_a071u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nnm6l"]
+radius = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5ba3"]
+atlas = ExtResource("1_a071u")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oydm2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w5ba3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Mob" type="CharacterBody2D"]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nnm6l")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_oydm2")

@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://d2yyg6soml4r5"]
+
+[ext_resource type="Script" uid="uid://secqclvgvkr" path="res://scenes/npc/npc.gd" id="1_pcwmf"]
+[ext_resource type="Texture2D" uid="uid://dbgmliithrq3h" path="res://Ninja Adventure - Asset Pack/Actor/Characters/Flam/SpriteSheet.png" id="2_r4bp4"]
+[ext_resource type="Texture2D" uid="uid://o8osf083wtgk" path="res://Ninja Adventure - Asset Pack/Ui/Dialog/DialogBoxFaceset.png" id="3_dpyoa"]
+[ext_resource type="Texture2D" uid="uid://bl36cc0f70emq" path="res://Ninja Adventure - Asset Pack/Actor/Characters/Flam/Faceset.png" id="4_r4bp4"]
+[ext_resource type="AudioStream" uid="uid://duq380khp7xdc" path="res://Ninja Adventure - Asset Pack/Sounds/Game/MiniImpact.wav" id="5_woxlu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pcwmf"]
+atlas = ExtResource("2_r4bp4")
+region = Rect2(0.139, -0.096, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dpyoa"]
+size = Vector2(15, 15)
+
+[sub_resource type="LabelSettings" id="LabelSettings_woxlu"]
+font_size = 20
+font_color = Color(0.0338533, 0.0338533, 0.0338533, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_r4bp4"]
+font_size = 14
+
+[node name="NPC" type="StaticBody2D" groups=["interactable"]]
+process_mode = 3
+script = ExtResource("1_pcwmf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_pcwmf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_dpyoa")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="DialogBoxText" type="TextureRect" parent="CanvasLayer"]
+offset_left = 270.0
+offset_top = 501.0
+offset_right = 979.0
+offset_bottom = 638.0
+texture = ExtResource("3_dpyoa")
+
+[node name="DialogLabel" type="Label" parent="CanvasLayer"]
+offset_left = 390.0
+offset_top = 534.0
+offset_right = 966.0
+offset_bottom = 623.0
+text = "Hello, World!"
+label_settings = SubResource("LabelSettings_woxlu")
+autowrap_mode = 3
+
+[node name="NPCIcon" type="TextureRect" parent="CanvasLayer"]
+offset_left = 284.0
+offset_top = 534.0
+offset_right = 374.0
+offset_bottom = 624.0
+texture = ExtResource("4_r4bp4")
+
+[node name="NPCName" type="Label" parent="CanvasLayer"]
+offset_left = 282.0
+offset_top = 503.0
+offset_right = 435.0
+offset_bottom = 526.0
+text = "Mariana"
+label_settings = SubResource("LabelSettings_r4bp4")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_woxlu")

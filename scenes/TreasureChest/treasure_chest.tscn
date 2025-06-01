@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://cfqlw1g7l2g1t"]
+
+[ext_resource type="Script" uid="uid://grqrxls6g451" path="res://scenes/TreasureChest/treasure_chest.gd" id="1_2jwao"]
+[ext_resource type="Texture2D" uid="uid://676lny6p5cwm" path="res://Ninja Adventure - Asset Pack/Items/Treasure/BigTreasureChest.png" id="1_ymk7p"]
+[ext_resource type="Texture2D" uid="uid://bougyq81yerg1" path="res://Ninja Adventure - Asset Pack/Items/Treasure/GoldCup.png" id="3_obpen"]
+[ext_resource type="AudioStream" uid="uid://cevbgndntbh87" path="res://Ninja Adventure - Asset Pack/Sounds/Game/PowerUp1.wav" id="4_r0oay"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jwao"]
+atlas = ExtResource("1_ymk7p")
+region = Rect2(0, 0, 16, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_obpen"]
+atlas = ExtResource("1_ymk7p")
+region = Rect2(16, 0, 16, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r0oay"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jwao")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_obpen")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oqqfx"]
+size = Vector2(16, 14)
+
+[node name="TreasureChest" type="StaticBody2D" groups=["interactable"]]
+script = ExtResource("1_2jwao")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_r0oay")
+animation = &"open"
+autoplay = "closed"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_oqqfx")
+
+[node name="Reward" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -6)
+texture = ExtResource("3_obpen")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_r0oay")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
